@@ -1,7 +1,7 @@
 import React from "react";
 
 const MovieCard = ({ movie, selectedMovie }) => {
-  console.log(movie);
+//   console.log(movie);
   const IMAGE_PATH = "https://image.tmdb.org/t/p/w500/";
   return (
     <div className={"movie-card"} onClick={() => selectedMovie(movie)}>
