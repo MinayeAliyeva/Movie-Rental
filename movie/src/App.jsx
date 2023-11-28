@@ -3,6 +3,7 @@ import axios from "axios";
 import MovieCard from "./components/MovieCard";
 import "./App.css";
 const API_URL = "https://api.themoviedb.org/3";
+const IMAGE_PATH = "https://image.tmdb.org/t/p/w1280/";
 const App = () => {
   const [movies, setMuvies] = useState([]);
   const [searchKey, setSearchKey] = useState("");
@@ -29,7 +30,7 @@ const App = () => {
       return null;
     }
 
-    return movies.map((movie) => <MovieCard key={movie.id} movie={movie} />);
+    return movies.map((movie) => <MovieCard key={movie.id} movie={movie} selectedMovie={setSelectedMovie}/>);
   }
 
   //
@@ -48,13 +49,20 @@ const App = () => {
           </form>
         </div>
       </header>
-      <div className="hero max-center">
-        <div className="hero-content">
-
+      <div className="hero "  style={{ backgroundImage: `url(${IMAGE_PATH}${selectedMovie.backdrop_path})` }}>
+        <div
+          className="hero-content max-center"
+         
+        >
+          {console.log(selectedMovie)}
+          <button className={"button"}>Play Trailler</button>
+          <h1 className={"herro-title"}>
+            {selectedMovie.title}
+            {selectedMovie.overview ? (
+            <p className="overview">{ selectedMovie.overview}</p>
+            ) : null}
+          </h1>
         </div>
-        <h1>
-          {selectedMovie.title}
-        </h1>
       </div>
 
       <div className="container">{renderedMovies()}</div>
